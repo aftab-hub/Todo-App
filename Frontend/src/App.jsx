@@ -32,7 +32,7 @@ const FormUsers = () => {
    
     e.preventDefault();
     await axios
-      .post('http://localhost:8888/user/create', userData)
+      .post('https://todoapp-btju.onrender.com/user/create', userData)
       .then(() => {
         toast.success("User created successfully");
         setToggle(!toggle);
@@ -50,7 +50,7 @@ const FormUsers = () => {
 
   const getData = async () => {
   await axios
-      .get('http://localhost:8888/user/getAll')
+      .get('https://todoapp-btju.onrender.com/user/getAll')
       .then((res) => {
         setFetchData(res?.data.result); 
       })
@@ -66,7 +66,7 @@ const FormUsers = () => {
 
     
     await axios
-      .delete(`http://localhost:8888/user/delete/${id}`)
+      .delete(`https://todoapp-btju.onrender.com/user/delete/${id}`)
       .then(() => {
         toast.error('User deleted successfully');
         setToggle(!toggle);
@@ -94,7 +94,7 @@ const FormUsers = () => {
 console.log("updatedData", updatedData);
     console.log("fetchData at update --------", fetchData);
     axios
-      .put(`http://localhost:8888/user/update/${updatedData._id}`, {
+      .put(`https://todoapp-btju.onrender.com/user/update/${updatedData._id}`, {
         name: userData.name ? userData.name : updatedData.name,
         email: userData.email ? userData.email : updatedData.email,
         password: userData.password ? userData.password : updatedData.password,
