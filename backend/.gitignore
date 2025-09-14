@@ -7,8 +7,8 @@ app.js
 *.env
 controllers/controllers.js
 middleware/authorization.js
-models/userSchema.js
+models/schema.js
 routes/userRoutes.js
-helper/utils.js
+helper
 node_modules
 .vscode
