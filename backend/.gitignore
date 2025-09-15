@@ -9,5 +9,15 @@ controllers/controllers.js
 middleware/authorization.js
 models/schema.js
 routes/userRoutes.js
+src
+src/Controllers
+uploads
+src/db
+src/middleware
+src/models
+src/Routes
+src/utils
+src/.prettierrc
+src/.prettierrcignore
 node_modules
 .vscode
