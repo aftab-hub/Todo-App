@@ -19,6 +19,7 @@ const FormUsers = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [editData, setEditData] = useState(null);
 
+const backendURL = "https://todoapp-btju.onrender.com"
 
   const handleInput = (e) => {
     const { id, value } = e.target;
@@ -32,7 +33,7 @@ const FormUsers = () => {
    
     e.preventDefault();
     await axios
-      .post('http://localhost:8888/user/create', userData)
+      .post(`${backendURL}/user/create`, userData)
       .then(() => {
         toast.success("User created successfully");
         setToggle(!toggle);
@@ -50,7 +51,7 @@ const FormUsers = () => {
 
   const getData = async () => {
   await axios
-      .get('http://localhost:8888/user/getAll')
+      .get(`${backendURL}/user/getAll`)
       .then((res) => {
         setFetchData(res?.data.result); 
       })
@@ -66,7 +67,7 @@ const FormUsers = () => {
 
     
     await axios
-      .delete(`http://localhost:8888/user/delete/${id}`)
+      .delete(`${backendURL}/user/delete/${id}`)
       .then(() => {
         toast.error('User deleted successfully');
         setToggle(!toggle);
@@ -94,7 +95,7 @@ const FormUsers = () => {
 console.log("updatedData", updatedData);
     console.log("fetchData at update --------", fetchData);
     axios
-      .put(`http://localhost:8888/user/update/${updatedData._id}`, {
+      .put(`${backendURL}/user/update/${updatedData._id}`, {
         name: userData.name ? userData.name : updatedData.name,
         email: userData.email ? userData.email : updatedData.email,
         password: userData.password ? userData.password : updatedData.password,

@@ -19,7 +19,7 @@ const port = 8888;
 app.use(express.json({extended : true, limit : "5mb"}));
 app.use(bodyParser.json({extended : true, limit : "5mb"}));
 app.use(bodyParser.urlencoded({extended : true}));
-app.use(cors());
+app.use(cors({origin : "https://todoappfrontend-20g7.onrender.com"}));
 
 
  
