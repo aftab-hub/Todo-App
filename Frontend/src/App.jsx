@@ -33,6 +33,7 @@ const backendURL = "https://todoapp-btju.onrender.com"
    
     e.preventDefault();
     await axios
+
       .post(`${backendURL}/user/create`, userData)
       .then(() => {
         toast.success("User created successfully");
@@ -52,6 +53,7 @@ const backendURL = "https://todoapp-btju.onrender.com"
   const getData = async () => {
   await axios
       .get(`${backendURL}/user/getAll`)
+
       .then((res) => {
         setFetchData(res?.data.result); 
       })
@@ -96,6 +98,7 @@ console.log("updatedData", updatedData);
     console.log("fetchData at update --------", fetchData);
     axios
       .put(`${backendURL}/user/update/${updatedData._id}`, {
+
         name: userData.name ? userData.name : updatedData.name,
         email: userData.email ? userData.email : updatedData.email,
         password: userData.password ? userData.password : updatedData.password,
