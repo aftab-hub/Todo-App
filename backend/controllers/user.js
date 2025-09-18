@@ -57,18 +57,33 @@ const deleteUser = async(req,res)=>{
 
 const updateUser = async(req, res)=>{
     const id = req.params.id
-    const updateValues = req.body
+    const updateValues = {...req.body} // we are taking copy of the user data from the req.body 
     try {
         const user = await User.findOne({
             _id : id
         })
         if(!user){
             return res.status(200).json({
-                message :"User Updated",
-                result : updateValues
+                message :"User not found",
             });
         };
-        await User.findByIdAndUpdate(id,updateValues)
+
+        if(updateValues.password){
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(updateValues.password, salt);
+            updateValues.password = hashedPassword;
+        }
+      const updateUser = await User.findByIdAndUpdate(id,updateValues, {
+        new : true
+       })
+
+       return res.json({
+        message : "user update successfully",
+          result : updateUser
+       })
+
+
+      
     } catch (error) {
         return res.status(500).json({
             message : error.message

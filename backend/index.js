@@ -1,7 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const User = require("./models/userSchema");
-const userController = require("./controllers/user");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
@@ -14,12 +12,12 @@ const auth = require("./middleware/auth")
 
 const app = express();
     
-const port = 8888;
 
 app.use(express.json({extended : true, limit : "5mb"}));
 app.use(bodyParser.json({extended : true, limit : "5mb"}));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(cors({origin : "https://todoappfrontend-20g7.onrender.com"}));
+
 
 
  
