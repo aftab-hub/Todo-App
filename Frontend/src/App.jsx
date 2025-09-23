@@ -76,7 +76,7 @@ const backendURL = "https://todoapp-btju.onrender.com"
       .delete(`${backendURL}/user/delete/${id}`)
       .then(() => {
         toast.error('User deleted successfully');
-        setToggle(!toggle);
+        setToggle(false);
       
     console.log("id", id);
 
