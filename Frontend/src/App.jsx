@@ -40,6 +40,7 @@ const backendURL = "https://todoapp-btju.onrender.com"
       .then(() => {
         toast.success("User created successfully");
         setToggle(false);
+        getData();
       })
       .catch((err) => {
         toast.error(err.message);
@@ -77,7 +78,7 @@ const backendURL = "https://todoapp-btju.onrender.com"
       .then(() => {
         toast.error('User deleted successfully');
         setToggle(false);
-      
+         getData();
     console.log("id", id);
 
 
