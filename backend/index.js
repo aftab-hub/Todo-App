@@ -16,7 +16,7 @@ const app = express();
 app.use(express.json({extended : true, limit : "5mb"}));
 app.use(bodyParser.json({extended : true, limit : "5mb"}));
 app.use(bodyParser.urlencoded({extended : true}));
-app.use(cors({origin : "https://todoappfrontend-20g7.onrender.com"}));
+app.use(cors({origin : "https://todoapp-frontend-33ow.onrender.com"}));
 
 
 
