@@ -1,7 +1,7 @@
 const User = require("../models/userSchema")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const cloudinary = require( "../utils/cloudinary");
+
 
 const register = async(req, res, next)=>{
     try {
