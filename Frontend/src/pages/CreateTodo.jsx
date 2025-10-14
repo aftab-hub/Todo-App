@@ -1,7 +1,7 @@
 import React from 'react';
 import toast from 'react-hot-toast';
 import API from '../services/Api';
-
+import { useNavigate } from "react-router-dom";
 const CreateTodo = ({
   setTodos,
   handleInput,
@@ -11,8 +11,13 @@ const CreateTodo = ({
   isEdit,
   setIsEdit,
   editData,
-  setEditData
+  setEditData,
+  setShowCreate
+
 }) => {
+
+  const navigate = useNavigate();
+
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -31,7 +36,8 @@ const CreateTodo = ({
       setIsEdit(false);
       setEditData(null);
       setFormData({ title: "", description: "", dueDate: "", dueTime: "", status: false });
-
+      setShowCreate(false)
+       navigate("/dashboard");
     } catch (err) {
       toast.error(err.response?.data?.message || "Error updating todo ❌");
       console.log(err.message);

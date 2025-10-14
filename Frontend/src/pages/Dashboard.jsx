@@ -4,6 +4,7 @@ import TodoListing from "./TodoListing";
 import CreateTodo from "./CreateTodo";
 import toast, { Toaster } from "react-hot-toast";
 import ProfileHeader from "../components/userProfile";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [showCreate, setShowCreate] = useState(false); // toggling createTodo component
@@ -17,6 +18,9 @@ const Dashboard = () => {
   });
   const [isEdit, setIsEdit] = useState(false);
   const [editData, setEditData] = useState(null);
+
+  const navigate = useNavigate();
+
 
   // Fetch user
   const fetchUser = async () => {
@@ -57,7 +61,10 @@ const Dashboard = () => {
       await API.post("/todo/create", formData);
       setFormData({ title: "", description: "", dueTime: "", status: false });
       toast.success("Todo created successfully ✅");
+       setShowCreate(false)
+       navigate("/dashboard");
       fetchTodos();
+
     } catch (err) {
       toast.error(err.response?.data?.message || "Error creating todo");
     }
@@ -122,6 +129,7 @@ const toggleCreate = () => {
             setIsEdit={setIsEdit}
             editData={editData}
             setEditData={setEditData}
+            setShowCreate={setShowCreate}
           />
         ) 
         
@@ -140,7 +148,7 @@ const toggleCreate = () => {
 
       </div>
 
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 };
