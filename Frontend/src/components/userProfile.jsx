@@ -14,8 +14,6 @@ const ProfileHeader = () => {
     const fetchProfile = async () => {
       try {
         const res = await API.get("/user/profile");
-        console.log(res?.data?.data?.profileLetter);
-        
       
         setProfileLetter(res?.data?.data?.profileLetter || "?");
       } catch (err) {

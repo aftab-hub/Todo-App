@@ -1,34 +1,34 @@
-import React, { useState } from "react";
+import  { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/Api";
 import toast from "react-hot-toast";
+import { AuthContext } from "../Context/AuthContext";
 
 const Register = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+ const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const { login } = useContext(AuthContext); // get login function
   const navigate = useNavigate();
 
   const handleInput = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await API.post("/user/register", formData); 
+    e.preventDefault();
+    try {
+      const res = await API.post("/user/register", formData);
+      toast.success("Registration successful ✅");
 
-    if (res.data.token) {
-      localStorage.setItem("token", res.data.token);
-      toast.success("Registration successful!");
-      navigate("/dashboard"); // redirect directly to dashboard
-    } else {
-      navigate("/login"); // fallback
+      // save token in context -> triggers App re-render
+      login(res.data.token); 
+
+      // navigate to dashboard immediately
+      navigate("/dashboard");
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Registration failed ❌");
     }
-
-  } catch (err) {
-    toast.error(err.response?.data?.message || "Error registering");
-  }
-};
-
+  };
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-300">

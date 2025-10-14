@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/Api";
 import { useContext } from "react";
@@ -6,25 +6,25 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const navigate = useNavigate();
+ const [formData, setFormData] = useState({ email: "", password: "" });
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await API.post("/user/login", formData);
-      // localStorage.setItem("token", res.data.token);  // here we are storing the token in localStorage after successfull login.
-     
-      login(res.data.token);
-      toast.success("Login successful!");
-      navigate("/dashboard"); // redirect to dashboard
+      toast.success("Login successful ✅");
+
+      login(res.data.token); // save token in context
+      navigate("/dashboard"); // navigate immediately
     } catch (err) {
-      toast.error(err.response?.data?.message || "Error logging in");
+      toast.error(err.response?.data?.message || "Login failed ❌");
     }
   };
 
