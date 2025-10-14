@@ -16,11 +16,7 @@ const app = express();
 app.use(express.json({extended : true, limit : "5mb"}));
 app.use(bodyParser.json({extended : true, limit : "5mb"}));
 app.use(bodyParser.urlencoded({extended : true}));
-app.use(cors({
-  origin: process.env.FRONTEND_URL,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true
-}));
+app.use(cors())
 
 
 
