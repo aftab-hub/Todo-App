@@ -78,8 +78,8 @@ const Dashboard = () => {
       setFormData({ title: "", description: "", dueTime: "", status: false });
       toast.success("Todo created successfully ✅");
        setShowCreate(false)
+       fetchTodos();
        navigate("/dashboard");
-      fetchTodos();
 
     } catch (err) {
       toast.error(err.response?.data?.message || "Error creating todo");
