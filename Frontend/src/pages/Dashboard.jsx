@@ -77,8 +77,8 @@ const Dashboard = () => {
       await API.post("/todo/create", formData);
       setFormData({ title: "", description: "", dueTime: "", status: false });
       toast.success("Todo created successfully ✅");
-       setShowCreate(false)
        fetchTodos();
+       setShowCreate(false)
        navigate("/dashboard");
 
     } catch (err) {
