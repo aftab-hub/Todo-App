@@ -75,11 +75,11 @@ const Dashboard = () => {
     e.preventDefault();
     try {
       await API.post("/todo/create", formData);
+      setFormData({ title: "", description: "", dueTime: "", status: false });
       toast.success("Todo created successfully ✅");
        fetchTodos();
        setShowCreate(false)
        navigate("/dashboard");
-      setFormData({ title: "", description: "", dueTime: "", status: false });
 
     } catch (err) {
       toast.error(err.response?.data?.message || "Error creating todo");
