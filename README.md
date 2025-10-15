@@ -61,6 +61,8 @@ DB_URL = 'YOUR MONGO_DB URL'
 
 SECRET_KEY = 'YOU SECRET KEY'
 
+FRONTEND_URL = 'YOUR FRONTEND URL' 
+
 📦 Installation & Setup
 
 git clone https://github.com/aftab-hub/Todo-App.git
