@@ -8,6 +8,7 @@ It allows users to register, log in, create, edit, delete, and manage their dail
 🧩 Features
 
 ✅ User Authentication (Register / Login)
+
 ✅ Add, Edit, and Delete Todos
 ✅ View Todo Details on a separate page
 ✅ Toast notifications for all actions
