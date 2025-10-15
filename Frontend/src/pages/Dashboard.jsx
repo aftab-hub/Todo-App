@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import API from "../services/Api";
 import TodoListing from "./TodoListing";
 import CreateTodo from "./CreateTodo";
@@ -109,10 +109,7 @@ const toggleCreate = () => {
   setShowCreate((prev) => !prev); // toggle visibility
 };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/login";
-  };
+
 
  if (loading) {
     // Responsive loading screen
@@ -138,7 +135,7 @@ const toggleCreate = () => {
           </h1>
 
          
-          <ProfileHeader user={user} onLogout={handleLogout}  />
+          <ProfileHeader user={user}   />
        
 
         </div>

@@ -1,10 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogOut } from "lucide-react";
 import API from "../services/Api"; // axios instance with token
+import { AuthContext } from "../Context/AuthContext";
 
 const ProfileHeader = () => {
   const navigate = useNavigate();
+  const {logout } = useContext(AuthContext)
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileLetter, setProfileLetter] = useState("?"); // default
   const menuRef = useRef();
@@ -23,10 +25,7 @@ const ProfileHeader = () => {
     fetchProfile();
   }, []);
 
-   const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/login"; // redirect to login
-  };
+ 
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -54,7 +53,7 @@ const ProfileHeader = () => {
         {menuOpen && (
           <div className="absolute right-0 mt-2 w-30 bg-white border border-gray-400  rounded-xl shadow-lg overflow-hidden z-50">
             <button
-              onClick={handleLogout}
+              onClick={logout}
               className="flex items-center cursor-pointer gap-3 w-full px-4 py-2 text-red-600 hover:bg-red-100 transition"
             >
               <LogOut size={18} /> Logout

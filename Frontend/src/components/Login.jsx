@@ -7,7 +7,7 @@ import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
  const [formData, setFormData] = useState({ email: "", password: "" });
-  const { login } = useContext(AuthContext);
+  const { login  } = useContext(AuthContext);
   const navigate = useNavigate();
   
   const handleInput = (e) => {
@@ -19,9 +19,9 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await API.post("/user/login", formData);
+      login(res.data.token); // save token in context
       toast.success("Login successful ✅");
 
-      login(res.data.token); // save token in context
       navigate("/dashboard");
     
     } catch (err) {
