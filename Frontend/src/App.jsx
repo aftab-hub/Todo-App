@@ -29,7 +29,7 @@ const App = () => {
         {/* Public Routes */}
         <Route
           path="/login"
-          element={token ? <Navigate to="/welcome" replace /> : <Login />}
+          element={token ? <Navigate to="/dashboard" replace /> : <Login />}
         />
         <Route
           path="/"

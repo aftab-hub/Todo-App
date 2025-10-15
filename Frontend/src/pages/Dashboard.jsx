@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import API from "../services/Api";
 import TodoListing from "./TodoListing";
 import CreateTodo from "./CreateTodo";
 import toast, { Toaster } from "react-hot-toast";
 import ProfileHeader from "../components/userProfile";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 
 
 const Dashboard = () => {
@@ -20,7 +21,21 @@ const Dashboard = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [editData, setEditData] = useState(null);
 
+  const {token} = useContext(AuthContext)
   const navigate = useNavigate();
+ const [loading, setLoading] = useState(true);
+  
+      if (token) {
+           useEffect(() => {
+      // Show loading for 2 seconds
+      const timer = setTimeout(() => {
+        setLoading(false); // Stop loading and show welcome content
+      }, 2000);
+  
+      return () => clearTimeout(timer); // Cleanup
+    }, []);
+  
+      }
 
 
   // Fetch user
@@ -98,6 +113,20 @@ const toggleCreate = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
   };
+
+ if (loading) {
+    // Responsive loading screen
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-indigo-50 px-4">
+        <div className="text-center">
+          <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16 sm:h-20 sm:w-20 mx-auto mb-4 animate-spin"></div>
+          <p className="text-indigo-600 font-semibold text-base sm:text-lg">
+            Loading...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

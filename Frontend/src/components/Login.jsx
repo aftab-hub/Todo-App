@@ -9,7 +9,7 @@ const Login = () => {
  const [formData, setFormData] = useState({ email: "", password: "" });
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  
   const handleInput = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -22,7 +22,7 @@ const Login = () => {
       toast.success("Login successful ✅");
 
       login(res.data.token); // save token in context
-      navigate("/welcome");
+      navigate("/dashboard");
     
     } catch (err) {
       toast.error(err.response?.data?.message || "Login failed ❌");
