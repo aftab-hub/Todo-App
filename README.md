@@ -54,20 +54,27 @@ dotenv (for environment variables)
 CORS enabled for cross-origin requests
 
 ⚙️ Environment Variables
+
 PORT = 5000
+
 DB_URL = 'YOUR MONGO_DB URL'
+
 SECRET_KEY = 'YOU SECRET KEY'
 
 📦 Installation & Setup
+
 git clone https://github.com/aftab-hub/Todo-App.git
 
 Install dependencies
+
 npm install --> for Frontend and Backend both
-run command,
-npm start
+
+run command --> npm start
 
 
 🚀 Live 
+
 Frontend: https://todoapp-frontend-o0nq.onrender.com
+
 Backend: https://todoapp-backend-glee.onrender.com
 
