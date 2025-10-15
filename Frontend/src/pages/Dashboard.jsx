@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import ProfileHeader from "../components/userProfile";
 import { useNavigate } from "react-router-dom";
 
+
 const Dashboard = () => {
   const [showCreate, setShowCreate] = useState(false); // toggling createTodo component
   const [user, setUser] = useState(null);
@@ -100,18 +101,22 @@ const toggleCreate = () => {
 
   return (
     <>
-      <div className="px-4 sm:px-6 md:px-10 py-6">
+      <div className="px-4 sm:px-6 md:px-10 py-6 ">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
+        <div className="flex flex-row  justify-between items-start gap-4 mb-4 ">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
             Todo App
           </h1>
-          <ProfileHeader user={user} onLogout={handleLogout} />
+
+          <div className="mt-1">
+          <ProfileHeader user={user} onLogout={handleLogout}  />
+          </div>
+
         </div>
 
        {/* Toggle button */}
         <button
-           onClick={toggleCreate}
+          onClick={toggleCreate}
           className="mb-4 px-4 py-2 bg-indigo-500 cursor-pointer text-white rounded-lg hover:bg-indigo-600 transition"
         >
           {showCreate ? "Close" : "Add Todo +"}
@@ -147,6 +152,8 @@ const toggleCreate = () => {
         }
 
       </div>
+
+     
 
       <Toaster position="top-center" reverseOrder={false} />
     </>

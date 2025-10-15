@@ -36,20 +36,21 @@ const TodoListing = ({ todos, setTodos, fetchTodos, handleEdit }) => {
   };
 
   return (
-    <div className="mt-6 grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 cursor-pointer">
-      {todos?.length > 0 ? (
-        todos.map((todo) => (
+  <>
+    {todos?.length > 0 ? (
+      <div className="mt-6 grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 cursor-pointer">
+        {todos.map((todo) => (
           <div
             key={todo._id}
             className="flex flex-col justify-between p-5 border border-gray-200 rounded-2xl bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
           >
-            {/* Top section: Checkbox + Details */}
+            {/* Top section */}
             <div className="flex items-start gap-4">
               <input
                 type="checkbox"
                 checked={todo.status}
                 onChange={(e) => {
-                  e.stopPropagation(); // prevent navigating to details
+                  e.stopPropagation();
                   handleToggle(todo._id);
                 }}
                 className="w-6 h-6 accent-indigo-500 cursor-pointer mt-1"
@@ -67,23 +68,14 @@ const TodoListing = ({ todos, setTodos, fetchTodos, handleEdit }) => {
                     todo.status ? "line-through" : ""
                   }`}
                 >
-                  {todo.description || "No description provided."}
+                  {todo.description.substring(0, 20) + "..." || "No description provided."}
                 </p>
-
-                {/* Combine date and time in one line */}
-               
-                  {todo.dueDate && todo.dueTime && 
-                 
+                {todo.dueDate && todo.dueTime && (
                   <p className="text-xs text-gray-500 mt-1">
-                  Due: {todo.dueDate || "No date"}{" "}
-                  {todo.dueTime ? `at ${todo.dueTime}` : ""}
-                </p>
-              
-                }
-
+                    Due: {todo.dueDate} at {todo.dueTime}
+                  </p>
+                )}
               </div>
-
-              {/* Details Button */}
               <button
                 onClick={() => navigate(`/todo/${todo._id}`)}
                 className="p-2 bg-indigo-500 text-sm text-white rounded-lg cursor-pointer transition ml-2"
@@ -93,7 +85,6 @@ const TodoListing = ({ todos, setTodos, fetchTodos, handleEdit }) => {
               </button>
             </div>
 
-            {/* Status + Edit/Delete */}
             <div className="flex justify-between items-center mt-4">
               <span
                 className={`text-xs font-medium px-3 py-1 rounded-full ${
@@ -105,16 +96,22 @@ const TodoListing = ({ todos, setTodos, fetchTodos, handleEdit }) => {
                 {todo.status ? "Completed" : "Pending"}
               </span>
 
-              <div className="flex gap-3" >
+              <div className="flex gap-3">
                 <button
-                    onClick={(e) => { e.stopPropagation(); handleEdit(todo); }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleEdit(todo);
+                  }}
                   className="p-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition cursor-pointer"
                   title="Edit"
                 >
                   <MdOutlineEdit size={20} />
                 </button>
                 <button
-                 onClick={(e) => { e.stopPropagation(); handleDelete(todo); }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDelete(todo);
+                  }}
                   className="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition cursor-pointer"
                   title="Delete"
                 >
@@ -123,16 +120,18 @@ const TodoListing = ({ todos, setTodos, fetchTodos, handleEdit }) => {
               </div>
             </div>
           </div>
-        ))
-      ) : (
-       <div className="ml-100 w-full">
-         <h1 className="text-center  text-gray-500 font-medium text-lg sm:text-xl mt-10">
+        ))}
+      </div>
+    ) : (
+      <div className="flex flex-col items-center justify-center h-[60vh]">
+        <h1 className="text-gray-500 font-medium text-lg sm:text-xl text-center">
           🚫 No todos found — start by adding one!
         </h1>
-       </div>
-      )}
-    </div>
-  );
+      </div>
+    )}
+  </>
+);
+
 };
 
 export default TodoListing;

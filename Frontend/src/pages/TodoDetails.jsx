@@ -12,7 +12,7 @@ useEffect(() => {
   const fetchTodo = async () => {
     try {
       const res = await API.get(`/todo/get/${id}`);
-      console.log(res?.data);
+    
       
       setTodo(res?.data?.todo); // now todo will not be undefined
     } catch (err) {
