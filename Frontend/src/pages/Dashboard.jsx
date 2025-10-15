@@ -108,9 +108,9 @@ const toggleCreate = () => {
             Todo App
           </h1>
 
-          <div className="mt-1">
+         
           <ProfileHeader user={user} onLogout={handleLogout}  />
-          </div>
+       
 
         </div>
 
