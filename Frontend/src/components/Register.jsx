@@ -22,9 +22,7 @@ const Register = () => {
 
       // save token in context -> triggers App re-render
       login(res.data.token); 
-
-      // navigate to dashboard immediately
-      navigate("/dashboard");
+       navigate("/welcome");
     } catch (err) {
       toast.error(err.response?.data?.message || "Registration failed ❌");
     }

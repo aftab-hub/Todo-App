@@ -22,7 +22,8 @@ const Login = () => {
       toast.success("Login successful ✅");
 
       login(res.data.token); // save token in context
-      navigate("/dashboard"); // navigate immediately
+      navigate("/welcome");
+    
     } catch (err) {
       toast.error(err.response?.data?.message || "Login failed ❌");
     }

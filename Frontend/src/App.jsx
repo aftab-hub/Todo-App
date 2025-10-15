@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import TodoDetails from "./pages/TodoDetails";
 import { AuthContext } from "./Context/AuthContext";
 import ProtectedRoute from "./services/ProtectedRoute";
+import Welcome from "./components/Welcome";
 
 const App = () => {
   const { token } = useContext(AuthContext); // get token from context
@@ -13,14 +14,26 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Welcome page after login/register */}
+        <Route
+          path="/welcome"
+          element={
+            token ? (
+              <Welcome />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+
         {/* Public Routes */}
         <Route
           path="/login"
-          element={token ? <Navigate to="/dashboard" replace /> : <Login />}
+          element={token ? <Navigate to="/welcome" replace /> : <Login />}
         />
         <Route
           path="/"
-          element={token ? <Navigate to="/dashboard" replace /> : <Register />}
+          element={token ? <Navigate to="/welcome" replace /> : <Register />}
         />
 
         {/* Protected Routes */}
@@ -44,7 +57,7 @@ const App = () => {
         {/* Redirect unknown routes */}
         <Route
           path="*"
-          element={<Navigate to={token ? "/dashboard" : "/login"} replace />}
+          element={<Navigate to={token ? "/welcome" : "/login"} replace />}
         />
       </Routes>
     </BrowserRouter>
